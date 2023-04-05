@@ -1,4 +1,5 @@
 import Foundation
+import CommonCrypto
 
 extension String {
     // MD5 Hash
@@ -15,7 +16,7 @@ extension String {
         
         let hash = data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) -> [UInt8] in
             var hash: [UInt8] = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-            CC_MD5(bytes.baseAddress, CC_LONG(data.count), &hash)
+            CC_SHA256(bytes.baseAddress, CC_LONG(data.count), &hash)
             return hash
         }
         
