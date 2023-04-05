@@ -59,7 +59,7 @@ extension UIImage {
         var effectImage = self
 
         let hasBlur = blurRadius > __FLT_EPSILON__
-        let hasSaturationChange = fabs(saturationDeltaFactor - 1.0) > __FLT_EPSILON__
+        let hasSaturationChange = abs(saturationDeltaFactor - 1.0) > __FLT_EPSILON__
 
         if hasBlur || hasSaturationChange {
             func createEffectBuffer(_ context: CGContext) -> vImage_Buffer {
@@ -88,18 +88,6 @@ extension UIImage {
 
 
             if hasBlur {
-                // A description of how to compute the box kernel width from the Gaussian
-                // radius (aka standard deviation) appears in the SVG spec:
-                // http://www.w3.org/TR/SVG/filters.html#feGaussianBlurElement
-                //
-                // For larger values of 's' (s >= 2.0), an approximation can be used: Three
-                // successive box-blurs build a piece-wise quadratic convolution kernel, which
-                // approximates the Gaussian kernel to within roughly 3%.
-                //
-                // let d = floor(s * 3*sqrt(2*pi)/4 + 0.5)
-                //
-                // ... if d is odd, use three box-blurs of size 'd', centered on the output pixel.
-                //
                 let inputRadius = blurRadius * screenScale
                 let d = floor(inputRadius * 3.0 * CGFloat(sqrt(2 * .pi) / 4 + 0.5))
                 var radius = UInt32(d)
