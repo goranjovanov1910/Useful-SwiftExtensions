@@ -43,3 +43,8 @@ Some useful swift extensions for iOS developers.
 - `applyDarkEffect()`
 - `applyTintEffectWithColor()`
 - `applyBlurWithRadius()`
+
+## UIColor
+- `lighterColor(0.5)`
+- `darkerColor(0.5)`
+- `UIColor(hex: "#00FF00")`
