@@ -48,3 +48,5 @@ Some useful swift extensions for iOS developers.
 - `lighterColor(0.5)`
 - `darkerColor(0.5)`
 - `UIColor(hex: "#00FF00")`
+- `mergeImage(with: img2, point: nil)`
+  default point value is cetner of the image so that second image will be merged at center, if point is nil
